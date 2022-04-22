@@ -12,17 +12,15 @@ ElectroGrid (EG) is the company who maintains the power grid of the country. The
        
   Tools :
   
-  
 	Eclipse Ide   
-  XAAMP                
-  Postman              
-  Apache Tomcat
+    XAAMP                
+    Postman              
+    Apache Tomcat
            
   Technologies :
   
-  
 	Java – JAX-RS (Jersey)          
-  Mysql Workbench
+    Mysql Workbench
 
 
 

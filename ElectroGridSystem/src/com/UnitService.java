@@ -32,9 +32,9 @@ public class UnitService{
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 
-		public String insertUnitManagement(@FormParam("minValue") String minValue, @FormParam("maxValue") String maxValue,
+		public String insertUnitManagement(@FormParam("mnValue") String mnValue, @FormParam("mxValue") String mxValue,
 				@FormParam("modifiedDate") String modifiedDate, @FormParam("price") String price) {
-			String output = itemObj.insertUnitManagement(minValue, maxValue, modifiedDate, price);
+			String output = itemObj.insertUnitManagement(mnValue, mxValue, modifiedDate, price);
 			return output;
 		}
 		
@@ -49,19 +49,36 @@ public class UnitService{
 			JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
 			// Read the values from the JSON object
 			String unitID = itemObject.get("unitID").getAsString();
-			String maxValue = itemObject.get("maxValue").getAsString();
-			String minValue = itemObject.get("minValue").getAsString();
+			String mnValue = itemObject.get("mnValue").getAsString();
+			String mxValue = itemObject.get("mxValue").getAsString();
 			String modifiedDate = itemObject.get("modifiedDate").getAsString();
 			String price = itemObject.get("price").getAsString();
 		
 
-			String output = itemObj.updateUnitManagement(unitID, minValue, maxValue, modifiedDate, price);
+			String output = itemObj.updateUnitManagement(unitID, mnValue, mxValue, modifiedDate, price);
 			
 			
 			return output;
 		}
 
-	   
+		
+		// Delete specific user
+		
+		
+		@DELETE
+		@Path("/delete") 
+		@Consumes(MediaType.APPLICATION_XML) 
+		@Produces(MediaType.TEXT_PLAIN) 
+		public String deleteUnit(String unitData) 
+		{ 
+		//Convert the input string to an XML document
+		 Document doc = Jsoup.parse(unitData, "", Parser.xmlParser()); 
+		 
+		//Read the value from the element <userID>
+		 String unitID = doc.select("unitID").text(); 
+		 String output = itemObj.deleteUnit(unitID); 
+		return output; 
+		}  
 	   
 }
 

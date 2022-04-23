@@ -43,6 +43,8 @@ public class Bill {
 			preparedStmt.setString(7, Date);
 			
 			
+			
+			
 			// execute the statement
 			preparedStmt.execute();
 			con.close();

@@ -1,0 +1,66 @@
+package com;
+
+import model.Bill;
+import javax.ws.rs.*; 
+import javax.ws.rs.core.MediaType;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+
+@Path("/Bills")
+public class BillService {
+	
+	Bill itemObj = new Bill();
+	
+	//read bill API
+
+	@GET
+	@Path("/view")
+	@Produces(MediaType.TEXT_HTML)
+	public String readItems() {
+		return itemObj.readBill();
+	}
+	
+	// insert bill API
+			@POST
+			@Path("/add")
+			@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+			@Produces(MediaType.TEXT_PLAIN)
+
+			public String insertBill(@FormParam("UserName") String UserName,
+					@FormParam("UserAddress") String UserAddress, @FormParam("UnitCount") String UnitCount, @FormParam("BillAmount") String BillAmount,
+					@FormParam("DueAmount") String DueAmount, @FormParam("Date") String Date ) {
+				String output = itemObj.insertBill(UserName, UserAddress, UnitCount, BillAmount, DueAmount, Date);
+				return output;
+			}
+			
+			
+			// API for update bill
+			@PUT
+			@Path("/update")
+			@Consumes(MediaType.APPLICATION_JSON)
+			@Produces(MediaType.TEXT_PLAIN)
+
+			public String updateBill(String itemData) {
+				// Convert the input string to a JSON object
+				JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
+				// Read the values from the JSON object
+				String BillID = itemObject.get("BillID").getAsString();
+				String UserName = itemObject.get("UserName").getAsString();
+				String UserAddress = itemObject.get("UserAddress").getAsString();
+				String UnitCount = itemObject.get("UnitCount").getAsString();
+				String BillAmount = itemObject.get("BillAmount").getAsString();
+				String DueAmount = itemObject.get("DueAmount").getAsString();
+				String Date = itemObject.get("Date").getAsString();
+
+				String output = itemObj.updateBill(BillID, UserName, UserAddress, UnitCount, BillAmount, DueAmount, Date);
+				
+				
+				return output;
+			}
+}

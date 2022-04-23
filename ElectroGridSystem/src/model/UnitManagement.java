@@ -23,7 +23,7 @@ public class UnitManagement {
 	
 	//Insert
 	
-	public String insertUnitManagement(String minValue, String maxValue, String modifiedDate, String price) {
+	public String insertUnitManagement(String mnValue, String mxValue, String modifiedDate, String price) {
 		String output = "";
 		try {
 			Connection con = connect();
@@ -33,17 +33,17 @@ public class UnitManagement {
 			
 			
 			// create a prepared statement
-			String query = " insert into unit( unitID, minValue, maxValue, modifiedDate, price)"
+			String query = " insert into unit( unitID, mnValue, mxValue, modifiedDate, price)"
 					+ " values( ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			
 			
 			// binding values
 			preparedStmt.setInt(1, 0);
-			preparedStmt.setInt(2, Integer.parseInt(minValue));
-			preparedStmt.setInt(3, Integer.parseInt(maxValue));
+			preparedStmt.setInt(2, Integer.parseInt(mnValue));
+			preparedStmt.setInt(3, Integer.parseInt(mxValue));
 			preparedStmt.setInt(4, Integer.parseInt(modifiedDate));
-			preparedStmt.setDouble(5, Double.parseDouble(price));
+			preparedStmt.setInt(5, Integer.parseInt(price));
 			
 			
 			// execute the statement
@@ -81,14 +81,14 @@ public class UnitManagement {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				String unitID = Integer.toString(rs.getInt("unitID"));
-				String minValue = rs.getString("minValue");
-				String maxValue = rs.getString("maxValue");
+				String mnValue = rs.getString("mnValue");
+				String mxValue = rs.getString("mxValue");
 				String modifiedDate = rs.getString("modifiedDate");
 				String price = Double.toString(rs.getDouble("price"));
 				
 				// Add into the html table
-				output += "<tr><td>" + minValue + "</td>";
-				output += "<td>" + maxValue + "</td>";
+				output += "<tr><td>" + mnValue + "</td>";
+				output += "<td>" + mxValue + "</td>";
 				output += "<td>" + modifiedDate + "</td>";
 				output += "<td>" + price + "</td>";
 				
@@ -109,7 +109,7 @@ public class UnitManagement {
 	}
 		
 	//updating unit management
-	public String updateUnitManagement(String unitID, String minValue, String maxValue, String modifiedDate, String price)
+	public String updateUnitManagement(String unitID, String mnValue, String mxValue, String modifiedDate, String price)
 
 	{
 		String output = "";
@@ -121,15 +121,15 @@ public class UnitManagement {
 				return "Error while connecting to the database for updating.";
 			}
 			// create a prepared statement
-			String query = "UPDATE unit SET minValue=?,maxValue=?,modifiedDate=?,price=? WHERE unitID=?";
+			String query = "UPDATE unit SET mnValue=?,mxValue=?,modifiedDate=?,price=? WHERE unitID=?";
 			
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
-			preparedStmt.setString(1, minValue);
-			preparedStmt.setString(2, maxValue);
-			preparedStmt.setString(3, modifiedDate);
-			preparedStmt.setDouble(5, Double.parseDouble(price));
-			preparedStmt.setInt(6, Integer.parseInt(unitID));
+			preparedStmt.setInt(1, Integer.parseInt(mnValue));
+			preparedStmt.setInt(2, Integer.parseInt(mxValue));
+			preparedStmt.setInt(3, Integer.parseInt(modifiedDate));
+			preparedStmt.setInt(4, Integer.parseInt(price));
+			preparedStmt.setInt(5, Integer.parseInt(unitID));
 			// execute the statement
 			 preparedStmt.execute();
 			con.close();
@@ -145,5 +145,42 @@ public class UnitManagement {
 		}
 		return output;
 	}
+	
+	//Delete
+	
+	public String deleteUnit(String unitID) 
+	 { 
+	        String output = ""; 
+	 try
+	 { 
+		       Connection con = connect(); 
+		       
+		       if (con == null) 
+		      {
+		    	   return "Error while connecting to the database for deleting."; 
+		      } 
+		       
+		     // create a prepared statement
+		     String query = "delete from unit where unitID=?"; 
+		     
+		     PreparedStatement preparedStmt = con.prepareStatement(query); 
+		     
+		     // binding values
+		     preparedStmt.setInt(1, Integer.parseInt(unitID)); 
+		     
+		    // execute the statement
+		    preparedStmt.execute(); 
+		    con.close(); 
+		    
+		    output = "Unit range Deleted successfully"; 
+	  } 
+	   catch (Exception e) 
+	  { 
+	       output = "Error while deleting the user."; 
+	       System.err.println(e.getMessage()); 
+	  } 
+	 
+   	 return output; 
+	 } 
 	
 }

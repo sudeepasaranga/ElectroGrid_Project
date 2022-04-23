@@ -65,7 +65,6 @@ public class UnitService{
 		// Delete specific user
 		
 		
-		
 		@DELETE
 		@Path("/delete") 
 		@Consumes(MediaType.APPLICATION_XML) 

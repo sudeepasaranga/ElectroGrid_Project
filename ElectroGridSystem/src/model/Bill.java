@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+
 public class Bill {
 
 	private Connection connect() {
@@ -129,9 +130,9 @@ public class Bill {
 				// binding values
 				preparedStmt.setString(1, UserName);
 				preparedStmt.setString(2, UserAddress);
-				preparedStmt.setString(3, UnitCount);
-				preparedStmt.setDouble(4, Double.parseDouble(BillAmount));
-				preparedStmt.setDouble(5, Double.parseDouble(DueAmount));
+				preparedStmt.setInt(3, Integer.parseInt(UnitCount));
+				preparedStmt.setString(4, BillAmount);
+				preparedStmt.setString(5, DueAmount);
 				preparedStmt.setString(6, Date);
 				preparedStmt.setInt(7, Integer.parseInt(BillID));
 				// execute the statement

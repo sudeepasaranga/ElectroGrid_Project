@@ -16,9 +16,11 @@ import com.google.gson.JsonParser;
 public class BillService {
 	
 	Bill itemObj = new Bill();
+	
+	//read bill API
 
 	@GET
-	@Path("/")
+	@Path("/view")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
 		return itemObj.readBill();
@@ -40,7 +42,7 @@ public class BillService {
 			
 			// API for update bill
 			@PUT
-			@Path("/")
+			@Path("/update")
 			@Consumes(MediaType.APPLICATION_JSON)
 			@Produces(MediaType.TEXT_PLAIN)
 

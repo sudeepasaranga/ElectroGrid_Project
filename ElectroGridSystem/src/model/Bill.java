@@ -168,9 +168,11 @@ public class Bill {
 			     String query = "delete from bill where BillID=?"; 
 			     
 			     PreparedStatement preparedStmt = con.prepareStatement(query); 
+			 
 			     
 			     // binding values
 			     preparedStmt.setInt(1, Integer.parseInt(BillID)); 
+			 
 			     
 			    // execute the statement
 			    preparedStmt.execute(); 

@@ -26,6 +26,30 @@ public class BillService {
 		return itemObj.readBill();
 	}
 	
+	//Unit Calculator
+	public double calculateBill(int unit) {
+		
+		if(unit >100) {
+			return unit * 50;
+		}
+		else if(unit >75 && unit <= 100) {
+			return unit * 40;
+		}
+		else if(unit >50 && unit <= 75) {
+			return unit * 30;
+		}
+		else if(unit >25 && unit <= 50) {
+			return unit * 20;
+		}
+		else if(unit >0 && unit <= 25) {
+			return unit * 15;
+		}
+		else {
+			return 0.0;
+		}
+		
+	}
+	
 	// insert bill API
 			@POST
 			@Path("/add")
@@ -35,6 +59,12 @@ public class BillService {
 			public String insertBill(@FormParam("UserName") String UserName,
 					@FormParam("UserAddress") String UserAddress, @FormParam("UnitCount") String UnitCount, @FormParam("BillAmount") String BillAmount,
 					@FormParam("DueAmount") String DueAmount, @FormParam("Date") String Date ) {
+				
+				int unitC = Integer.parseInt(UnitCount);
+				double billSum = calculateBill(unitC);
+
+				BillAmount = String.valueOf(billSum);
+				
 				String output = itemObj.insertBill(UserName, UserAddress, UnitCount, BillAmount, DueAmount, Date);
 				return output;
 			}
@@ -57,6 +87,11 @@ public class BillService {
 				String BillAmount = itemObject.get("BillAmount").getAsString();
 				String DueAmount = itemObject.get("DueAmount").getAsString();
 				String Date = itemObject.get("Date").getAsString();
+				
+				int unitC = Integer.parseInt(UnitCount);
+				double billSum = calculateBill(unitC);
+
+				BillAmount = String.valueOf(billSum);
 
 				String output = itemObj.updateBill(BillID, UserName, UserAddress, UnitCount, BillAmount, DueAmount, Date);
 				

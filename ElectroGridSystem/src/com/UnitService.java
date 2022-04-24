@@ -18,15 +18,17 @@ import com.google.gson.JsonParser;
 public class UnitService{
 	
 	UnitManagement itemObj = new UnitManagement();
-
-	@GET
-	@Path("/read")
-	@Produces(MediaType.TEXT_HTML)
-	public String readItems() {
-		return itemObj.readUnitManagement();
-	}
 	
-	// insert Unit Management API
+	// API for read Units 
+
+		@GET
+		@Path("/read")
+		@Produces(MediaType.TEXT_HTML)
+		public String readItems() {
+			return itemObj.readUnitManagement();
+		}
+	
+	// API for insert Unit 
 		@POST
 		@Path("/add")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -38,7 +40,7 @@ public class UnitService{
 			return output;
 		}
 		
-		// API for update unit range
+		// API for update unit 
 		@PUT
 		@Path("/update")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -62,8 +64,7 @@ public class UnitService{
 		}
 
 		
-		// Delete specific user
-		
+		//API for delete specific unit
 		
 		
 		@DELETE
@@ -80,6 +81,15 @@ public class UnitService{
 		 String output = itemObj.deleteUnit(unitID); 
 		return output; 
 		}  
-	   
+		
+		//API for read specific unit range
+		
+		@GET
+		@Path("/getone")
+		@Produces(MediaType.TEXT_HTML)
+		public String readAPayment()
+		 {
+			return itemObj.readUnit();
+		 } 
 }
 

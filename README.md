@@ -1,27 +1,37 @@
- Project in Programming Application Framework Module in SLIIT
-                                                  
 
-•	Project Background
+# ElectroGrid Project
 
-
-ElectroGrid (EG) is the company who maintains the power grid of the country. They have a system to monitor the power consumption of the users, generate the monthly    bills and automatically send to the users, and accept the online payments from the users.
+# Group No: SLIIT/2022/IT/REG/WD/65
 
 
+## Developers
 
-•	Tools & Technologies
-       
-  Tools :
-  
-	Eclipse Ide   
-    XAAMP                
-    Postman              
-    Apache Tomcat
-           
-  Technologies :
-  
-	Java – JAX-RS (Jersey)          
-    Mysql Workbench
+- Nwthmin N.A.L (IT20148690)
+- Sudeepa Saranga L.G.(IT20155216)
+- Tharindu Dilshan (IT20163136)
+- Wijewickrama H.E. ()
 
+
+## Service Implementation
+
+- User Service - Nethmin N.A.L
+- Unit Service - Sudeepa Saranga L.G.
+- Billing Service - Tharindu Dilshan
+- Payment Service - Wijewickrama H.E.
+
+
+
+## Technology Used
+
+- Java Rest API(JAX-RS)
+- MySQL 
+- Apache Tomcat Server
+
+## IDEs
+
+- Eclipse IDE
+- MySQL WorkBench
+- Postman
 
 
 

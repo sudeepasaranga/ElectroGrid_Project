@@ -2,6 +2,7 @@ package model;
 
 import java.sql.*;
 
+
 public class User {
 	
 private Connection connect() {
@@ -189,6 +190,65 @@ private Connection connect() {
 		 
 	    	 return output; 
 		 }
+		
+		public String readAUser()
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = connect();
+		 if (con == null)
+		 {
+			 return "Error while connecting to the database for reading.";
+		 }
+		 
+		 // Prepare the html table to be displayed
+		 output = "<table border='1'><tr><th>User Name</th><th>Address</th>" +
+		 "<th>Phone Number</th><th>Email</th>" +
+		 "<th>Password</th>" +
+		 "<th>Update</th><th>Remove</th></tr>";
+
+		 String query = "select * from user where userID= ?";
+		 Statement stmt = con.createStatement();
+		 ResultSet rs = stmt.executeQuery(query);
+		 // iterate through the rows in the result set
+		 while (rs.next())
+		 {
+		 String userID = Integer.toString(rs.getInt("userID"));
+		 String username = rs.getString("username");
+		 String address = rs.getString("address");
+		 String phonenum = rs.getString("phonenum");
+		 String email = rs.getString("email");
+		 String password = rs.getString("password");
+		
+		 // Add into the html table
+		 output += "<tr><td>" + userID + "</td>";
+		 output += "<td>" + username + "</td>";
+		 output += "<td>" + address + "</td>";
+		 output += "<td>" + phonenum + "</td>";
+		 output += "<td>" + email + "</td>";
+		 output += "<td>" + password + "</td>";
+		
+		 // buttons
+		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
+		 + "<td><form method='post' action='payment.jsp'>"
+		 + "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
+		 + "<input name='itemID' type='hidden' value='" + userID
+		 + "'>" + "</form></td></tr>";
+		 }
+		 con.close();
+		 // Complete the html table
+		 output += "</table>";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while reading the data.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
+		 } 
+		
+	
 		
 				
 }

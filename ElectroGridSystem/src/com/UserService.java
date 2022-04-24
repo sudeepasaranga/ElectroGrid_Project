@@ -42,6 +42,8 @@ public class UserService {
 	 return userObj.readUser(); 
 	}
 	
+	
+	
 	//Update specific user
 	
 	@PUT
@@ -85,6 +87,12 @@ public class UserService {
 		return output; 
 		}
 		
-
+		@GET
+		@Path("/single/{userID}")
+		@Produces(MediaType.TEXT_HTML)
+		public String readAUser(@PathParam("userID") int userID)
+		 {
+			return userObj.readAUser();
+		 } 
 	
 }

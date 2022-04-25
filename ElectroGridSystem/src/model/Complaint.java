@@ -91,7 +91,6 @@ public class Complaint {
 		return output;
 	}
 	
-	/*
 	//updating complaint management
 		public String updateComplaint(String cID, String perName, String cAccNo, String cArea, String cPhone, String comp )
 
@@ -131,7 +130,7 @@ public class Complaint {
 			return output;
 		}
 		
-		*/
+		
 	
 		//Delete
 		

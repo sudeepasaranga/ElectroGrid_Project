@@ -40,7 +40,7 @@ public class ComplaintService {
 
 	}
 	
-/*
+
 	// API for update unit 
 	@PUT
 	@Path("/ComplaintUpdate")
@@ -64,7 +64,6 @@ public class ComplaintService {
 		return output;
 	}
 
-*/
 		//API for delete specific unit
 		
 		

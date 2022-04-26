@@ -1,6 +1,7 @@
 package com;
 
 import model.UnitManagement; 
+
 //For REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
@@ -18,15 +19,17 @@ import com.google.gson.JsonParser;
 public class UnitService{
 	
 	UnitManagement itemObj = new UnitManagement();
-
-	@GET
-	@Path("/read")
-	@Produces(MediaType.TEXT_HTML)
-	public String readItems() {
-		return itemObj.readUnitManagement();
-	}
 	
-	// insert Unit Management API
+	// API for read Units 
+
+		@GET
+		@Path("/read")
+		@Produces(MediaType.TEXT_HTML)
+		public String readItems() {
+			return itemObj.readUnitManagement();
+		}
+	
+	// API for insert Unit 
 		@POST
 		@Path("/add")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -38,15 +41,19 @@ public class UnitService{
 			return output;
 		}
 		
-		// API for update unit range
+	// API for update unit 
+		
 		@PUT
 		@Path("/update")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 
 		public String updateUnitManagement(String itemData) {
+			
 			// Convert the input string to a JSON object
+			
 			JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
+			
 			// Read the values from the JSON object
 			String unitID = itemObject.get("unitID").getAsString();
 			String mnValue = itemObject.get("mnValue").getAsString();
@@ -62,24 +69,23 @@ public class UnitService{
 		}
 
 		
-		// Delete specific user
+	//API for delete specific unit
 		
+			@DELETE
+			@Path("/delete") 
+			@Consumes(MediaType.APPLICATION_XML) 
+			@Produces(MediaType.TEXT_PLAIN) 
+			public String deleteUnit(String unitData) 
+			{ 
+			//Convert the input string to an XML document
+			 Document doc = Jsoup.parse(unitData, "", Parser.xmlParser()); 
+			 
+			//Read the value from the element <unitID>
+			 String unitID = doc.select("unitID").text(); 
+			 String output = itemObj.deleteUnit(unitID); 
+			return output; 
+			}  
 		
-		
-		@DELETE
-		@Path("/delete") 
-		@Consumes(MediaType.APPLICATION_XML) 
-		@Produces(MediaType.TEXT_PLAIN) 
-		public String deleteUnit(String unitData) 
-		{ 
-		//Convert the input string to an XML document
-		 Document doc = Jsoup.parse(unitData, "", Parser.xmlParser()); 
-		 
-		//Read the value from the element <userID>
-		 String unitID = doc.select("unitID").text(); 
-		 String output = itemObj.deleteUnit(unitID); 
-		return output; 
-		}  
-	   
+
 }
 

@@ -245,5 +245,16 @@ public class Bill {
 		String Date = rs.getString("Date");
 		      
 	      // Add into the html table
+		      
+		output += "<tr><td>" + BillID + "</td>";
+		output += "<td>" + UserName + "</td>";
+		output += "<td>" + UserAddress + "</td>";
+		output += "<td>" + UnitCount + "</td>";
+		output += "<td>" + BillAmount + "</td>";
+		output += "<td>" + DueAmount + "</td>";
+		output += "<td>" + Date + "</td>";
+		
+		
+		
 			
 }

@@ -14,13 +14,14 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 
-
+//path for the URL
 @Path("/Payments")
 public class PaymentService {
 
 
 	Payment itemObj = new Payment();
-
+	
+      //API for view all payments detils
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)

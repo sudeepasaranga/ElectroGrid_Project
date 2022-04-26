@@ -22,7 +22,7 @@ public class PaymentService {
 	Payment itemObj = new Payment();
 
 	@GET
-	@Path("/all")
+	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
 		return itemObj.readPayment();
@@ -30,19 +30,19 @@ public class PaymentService {
 		
 	}
 	
-	// insert payment API
+	// add new payment API
 		@POST
 		@Path("/insert")
 		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 
-		public String insertPayment(@FormParam("paymentCode") String paymentCode, @FormParam("payMethod") String payMethod, @FormParam("cardHolder") String cardHolder,
-				@FormParam("cardNo") String cardNo, @FormParam("cvv") String cvv, @FormParam("amount") String amount, @FormParam("email") String email, @FormParam("expDate") String expDate) {
-			String output = itemObj.insertPayment(paymentCode, payMethod, cardHolder, cardNo, cvv, amount, email, expDate);
+		public String insertPayment(@FormParam("dateOfpay") String dateOfpay, @FormParam("payMethod") String payMethod, @FormParam("cardHolder") String cardHolder,
+				@FormParam("cardNo") String cardNo, @FormParam("cvv") String cvv, @FormParam("expDate") String expDate, @FormParam("totamount") String totamount) {
+			String output = itemObj.insertPayment(dateOfpay, payMethod, cardHolder, cardNo, cvv, expDate, totamount);
 			return output;
 		}
 		
-		// API for update payment
+	// API for update payment
 		@PUT
 		@Path("/update")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -53,21 +53,21 @@ public class PaymentService {
 			JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
 			// Read the values from the JSON object
 			String paymentId = itemObject.get("paymentId").getAsString();
-			String paymentCode = itemObject.get("paymentCode").getAsString();
+			String dateOfpay = itemObject.get("dateOfpay").getAsString();
 			String payMethod = itemObject.get("payMethod").getAsString();
 			String cardHolder = itemObject.get("cardHolder").getAsString();
 			String cardNo = itemObject.get("cardNo").getAsString();
 			String cvv = itemObject.get("cvv").getAsString();
-			String amount = itemObject.get("amount").getAsString();
-			String email = itemObject.get("email").getAsString();
 			String expDate = itemObject.get("expDate").getAsString();
+			String totamount = itemObject.get("totamount").getAsString();
 			
-			String output = itemObj.updatePayment(paymentId, paymentCode, payMethod, cardHolder, cardNo, cvv, amount, email, expDate);
+			String output = itemObj.updatePayment(paymentId, dateOfpay, payMethod, cardHolder, cardNo, cvv, expDate, totamount);
 			
 			
 			return output;
 		}
-		//API for delete payment
+		
+	//API for delete payment
 
 		@DELETE
 		@Path("/delete") 

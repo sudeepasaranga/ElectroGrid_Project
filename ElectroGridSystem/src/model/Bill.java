@@ -212,5 +212,20 @@ public class Bill {
 	// Prepare the view table to be displayed
 	
 		output = "<table border='1'>"
+			
+		+ "<tr>"
+		+ "<th>Bill ID</th>"
+		+ "<th>User Name</th>"
+		+ "<th>User Address</th>"
+		+ "<th>Unit Count</th>"
+		+ "<th>Bill Amount</th>"
+		+ "<th>Due Amount</th>"
+		+ "<th>Date</th>"
+		+ "<th>Update</th>"
+		+ "<th>Remove</th>"
+		+ "</tr>";
+
+
+
 
 }

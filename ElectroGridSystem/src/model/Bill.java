@@ -263,6 +263,9 @@ public class Bill {
 		+"<input name='BillID' type='hidden' value='" + BillID + "'>" + "</form></td></tr>";
 		}
 		con.close();
+			
+	       
+	       // Complete the html table
 		
 			
 }

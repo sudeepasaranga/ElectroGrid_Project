@@ -208,6 +208,79 @@ public class Payment {
 	 
    	 return output; 
 	 }
+		//read most relevant payment details
+		public String readOnePayment()
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = connect();
+		 if (con == null)
+		 {
+			 return "Error while connecting to the database for reading..."; 
+			 }
+		 // Prepare the view table to be displayed
+		 output = "<table border='1'>"
+					
+					+ "<tr>"
+					+ "<th>Payment ID</th>"
+					+ "<th>Date Of Pay</th>"
+					+ "<th>Payment Method</th>" 
+					+ "<th>CardHolder Name</th>"
+					+ "<th>Card Number</th>" 
+					+ "<th>CVV</th>" 
+					+ "<th>Expiry Date</th>" 
+					//+ "<th>Email Address</th>" 
+					+ "<th>Total Amount</th>" 
+					+ "<th>Action</th>"
+					//+ "<th>Update</th><th>Remove</th>"
+					+ "</tr>";
+
+		 String query = "select * from payment where PaymentId= (Select max(PaymentId) from payment)";
+		 Statement stmt = con.createStatement();
+		 ResultSet rs = stmt.executeQuery(query);
+		 // iterate through the rows in the result set
+		 while (rs.next())
+		 {
+			 
+				String paymentId = rs.getString("paymentId");
+				String dateOfpay = rs.getString("dateOfpay");
+				String payMethod = rs.getString("payMethod");
+				String cardHolder = rs.getString("cardHolder");
+				String cardNo = rs.getString("cardNo");
+				String cvv = rs.getString("cvv");
+				//String totamount = rs.getString("totamount");
+				//String email = rs.getString("email");
+				String expDate = rs.getString("expDate");
+				String totamount = rs.getString("totamount");
+		 // Add into the html table
+				output += "<tr><td>" + paymentId + "</td>";
+				output += "<td>" + dateOfpay + "</td>";
+				output += "<td>" + payMethod + "</td>";
+				output += "<td>" + cardHolder + "</td>";
+				output += "<td>" + cardNo + "</td>";
+				output += "<td>" + cvv + "</td>";
+				output += "<td>" + expDate + "</td>";
+				//output += "<td>" + email + "</td>";
+				output += "<td>" + totamount + "</td>";
+		 // buttons
+				output += "<td>" + "<input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'>"
+						+ " <input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>" + "</td></tr>"
+					
+					 +"<input name='paymentId' type='hidden' value='" + paymentId + "'>" + "</form></td></tr>";
+		 }
+		 con.close();
+		 // Complete the html table
+		 output += "</table>";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while reading the items.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
+		 } 
+		
 		
 		
 }

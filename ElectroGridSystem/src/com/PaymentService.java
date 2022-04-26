@@ -83,6 +83,15 @@ public class PaymentService {
 		 String output = itemObj.deletePayment(paymentId); 
 		return output; 
 		}
+	//API for read a latest payment
+		@GET
+		@Path("/latest")
+		@Produces(MediaType.TEXT_HTML)
+		public String readOnePayment()
+		 {
+			return itemObj.readOnePayment();
+		 } 
+		
 		
 
 		

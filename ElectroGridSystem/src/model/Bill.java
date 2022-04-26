@@ -196,5 +196,7 @@ public class Bill {
 	    	 return output; 
 		 }
 	
+	//read most relevant bill details
+	
 
 }

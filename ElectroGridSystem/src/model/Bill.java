@@ -269,6 +269,14 @@ public class Bill {
 			
 	       output += "</table>";
 		}
+			
+		catch (Exception e)
+		{
+		output = "Error while reading the items.";
+		System.err.println(e.getMessage());
+		}
+		return output;
+		}
 		
 			
 }

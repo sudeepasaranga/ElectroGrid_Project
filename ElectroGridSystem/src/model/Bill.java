@@ -19,6 +19,7 @@ public class Bill {
 		return con;
 	}
 	
+	
 	public String insertBill(String UserName, String UserAddress, String UnitCount, String BillAmount, String DueAmount, String Date) {
 		String output = "";
 		try {
@@ -28,7 +29,9 @@ public class Bill {
 			}
 			
 			
+			
 			// create a prepared statement
+			
 			String query = " insert into bill( BillID, UserName, UserAddress, UnitCount, BillAmount, DueAmount, Date)"
 					+ " values( ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -47,6 +50,7 @@ public class Bill {
 			
 			
 			// execute the statement
+			
 			preparedStmt.execute();
 			con.close();
 			output = "Inserted successfully";
@@ -58,7 +62,9 @@ public class Bill {
 		
 	}
 	
+	
 	//reading bills
+	
 		public String readBill() {
 			String output = "";
 			try {
@@ -111,7 +117,9 @@ public class Bill {
 			return output;	
 		}
 		
+	
 		//updating bills
+	
 		public String updateBill(String BillID, String UserName, String UserAddress, String UnitCount, String BillAmount, String DueAmount, String Date)
 
 		{

@@ -198,5 +198,9 @@ public class Bill {
 	
 	//read most relevant bill details
 	
+	        public String readOneBill()
+		{
+		String output = "";
+	
 
 }

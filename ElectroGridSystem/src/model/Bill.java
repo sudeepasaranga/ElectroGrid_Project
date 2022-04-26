@@ -255,6 +255,6 @@ public class Bill {
 		output += "<td>" + Date + "</td>";
 		
 		
-		
+		// buttons
 			
 }

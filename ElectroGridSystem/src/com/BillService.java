@@ -125,5 +125,10 @@ public class BillService {
 	
 	
 	//API for read a latest bill
+	
+	                @GET
+			@Path("/latest")
+			@Produces(MediaType.TEXT_HTML)
+			public String readOneBill()
 			
 }

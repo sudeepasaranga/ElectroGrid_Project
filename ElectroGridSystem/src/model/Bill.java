@@ -266,6 +266,9 @@ public class Bill {
 			
 	       
 	       // Complete the html table
+			
+	       output += "</table>";
+		}
 		
 			
 }

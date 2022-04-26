@@ -4,6 +4,7 @@ import java.sql.* ;
 
 public class UnitManagement {
 
+	//Method for Database connection
 	
 	private Connection connect() {
 		Connection con = null;
@@ -21,8 +22,9 @@ public class UnitManagement {
 	}
 	
 	
+	//Method for Insert unit details
 	
-	//Insert
+	
 	
 	public String insertUnitManagement(String mnValue, String mxValue, String modifiedDate, String price) {
 		String output = "";
@@ -43,8 +45,8 @@ public class UnitManagement {
 			preparedStmt.setInt(1, 0);
 			preparedStmt.setInt(2, Integer.parseInt(mnValue));
 			preparedStmt.setInt(3, Integer.parseInt(mxValue));
-			preparedStmt.setInt(4, Integer.parseInt(modifiedDate));
-			preparedStmt.setInt(5, Integer.parseInt(price));
+			preparedStmt.setString(4, modifiedDate);
+			preparedStmt.setDouble(5, Double.parseDouble(price));
 			
 			
 			// execute the statement
@@ -60,7 +62,8 @@ public class UnitManagement {
 	}
 	
 	
-	//reading units
+	//Method for reading unit details
+	
 	public String readUnitManagement() {
 		String output = "";
 		try {
@@ -84,7 +87,7 @@ public class UnitManagement {
 				String unitID = Integer.toString(rs.getInt("unitID"));
 				String mnValue = rs.getString("mnValue");
 				String mxValue = rs.getString("mxValue");
-				String modifiedDate = rs.getString("modifiedDate");
+				Date modifiedDate = rs.getDate("modifiedDate");
 				String price = Double.toString(rs.getDouble("price"));
 				
 				// Add into the html table
@@ -109,7 +112,8 @@ public class UnitManagement {
 		return output;	
 	}
 		
-	//updating unit management
+	//Method for Update unit details
+	
 	public String updateUnitManagement(String unitID, String mnValue, String mxValue, String modifiedDate, String price)
 
 	{
@@ -128,8 +132,8 @@ public class UnitManagement {
 			// binding values
 			preparedStmt.setInt(1, Integer.parseInt(mnValue));
 			preparedStmt.setInt(2, Integer.parseInt(mxValue));
-			preparedStmt.setInt(3, Integer.parseInt(modifiedDate));
-			preparedStmt.setInt(4, Integer.parseInt(price));
+			preparedStmt.setString(3, modifiedDate);
+			preparedStmt.setDouble(4, Double.parseDouble(price));
 			preparedStmt.setInt(5, Integer.parseInt(unitID));
 			// execute the statement
 			 preparedStmt.execute();
@@ -147,7 +151,7 @@ public class UnitManagement {
 		return output;
 	}
 	
-	//Delete
+	//Method for Delete unit details
 	
 	public String deleteUnit(String unitID) 
 	 { 
@@ -177,62 +181,11 @@ public class UnitManagement {
 	  } 
 	   catch (Exception e) 
 	  { 
-	       output = "Error while deleting the user."; 
+	       output = "Error while deleting the unit."; 
 	       System.err.println(e.getMessage()); 
 	  } 
 	 
    	 return output; 
 	 } 
 	
-	
-	///read specific record
-		public String readUnit()
-		 {
-		 String output = "";
-		 try
-		 {
-		 Connection con = connect();
-		 if (con == null)
-		 {return "Error while connecting to the database for reading."; }
-		 // Prepare the html table to be displayed
-		 output = "<table border='1'><tr><th>Max unit</th><th>Min unit</th>" +
-		 "<th>Modified Date</th><th>Price</th>" +
-		 "<th>Update</th><th>Remove</th></tr>";
-	
-		 String query = "select * from unit where unitID= (Select max(unitID) from unit)";
-		 Statement stmt = con.createStatement();
-		 ResultSet rs = stmt.executeQuery(query);
-		 // iterate through the rows in the result set
-		 while (rs.next())
-		 {
-		 String unitID = Integer.toString(rs.getInt("unitID"));
-		 String mnValue = rs.getString("mnValue");
-		 String mxValue = rs.getString("mxValue");
-		 String modifiedDate = rs.getString("modifiedDate");
-		 String price = rs.getString("price");
-	
-		 // Add into the html table
-		 output += "<tr><td>" + mnValue + "</td>";
-		 output += "<td>" + mxValue + "</td>";
-		 output += "<td>" + modifiedDate + "</td>";
-		 output += "<td>" + price + "</td>";
-	
-		 // buttons
-		 output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
-		 + "<td><form method='post' action='items.jsp'>"
-		 + "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-		 + "<input name='unitID' type='hidden' value='" + unitID
-		 + "'>" + "</form></td></tr>";
-		 }
-		 con.close();
-		 // Complete the html table
-		 output += "</table>";
-		 }
-		 catch (Exception e)
-		 {
-		 output = "Error while reading the items.";
-		 System.err.println(e.getMessage());
-		 }
-		 return output;
-		 } 
 }

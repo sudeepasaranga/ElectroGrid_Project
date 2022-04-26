@@ -1,6 +1,7 @@
 package com;
 
 import model.UnitManagement; 
+
 //For REST Service
 import javax.ws.rs.*; 
 import javax.ws.rs.core.MediaType; 
@@ -40,15 +41,19 @@ public class UnitService{
 			return output;
 		}
 		
-		// API for update unit 
+	// API for update unit 
+		
 		@PUT
 		@Path("/update")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 
 		public String updateUnitManagement(String itemData) {
+			
 			// Convert the input string to a JSON object
+			
 			JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
+			
 			// Read the values from the JSON object
 			String unitID = itemObject.get("unitID").getAsString();
 			String mnValue = itemObject.get("mnValue").getAsString();
@@ -64,32 +69,23 @@ public class UnitService{
 		}
 
 		
-		//API for delete specific unit
+	//API for delete specific unit
 		
+			@DELETE
+			@Path("/delete") 
+			@Consumes(MediaType.APPLICATION_XML) 
+			@Produces(MediaType.TEXT_PLAIN) 
+			public String deleteUnit(String unitData) 
+			{ 
+			//Convert the input string to an XML document
+			 Document doc = Jsoup.parse(unitData, "", Parser.xmlParser()); 
+			 
+			//Read the value from the element <unitID>
+			 String unitID = doc.select("unitID").text(); 
+			 String output = itemObj.deleteUnit(unitID); 
+			return output; 
+			}  
 		
-		@DELETE
-		@Path("/delete") 
-		@Consumes(MediaType.APPLICATION_XML) 
-		@Produces(MediaType.TEXT_PLAIN) 
-		public String deleteUnit(String unitData) 
-		{ 
-		//Convert the input string to an XML document
-		 Document doc = Jsoup.parse(unitData, "", Parser.xmlParser()); 
-		 
-		//Read the value from the element <userID>
-		 String unitID = doc.select("unitID").text(); 
-		 String output = itemObj.deleteUnit(unitID); 
-		return output; 
-		}  
-		
-		//API for read specific unit range
-		
-		@GET
-		@Path("/getone")
-		@Produces(MediaType.TEXT_HTML)
-		public String readAPayment()
-		 {
-			return itemObj.readUnit();
-		 } 
+
 }
 

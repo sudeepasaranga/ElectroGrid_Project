@@ -18,7 +18,8 @@ import model.Complaint;
 public class ComplaintService {
 
 	Complaint ComplaintObj = new Complaint();
-
+	
+	// API for read complains
 	@GET
 	@Path("/ComplaintRead")
 	@Produces(MediaType.TEXT_HTML)
@@ -26,7 +27,7 @@ public class ComplaintService {
 		return ComplaintObj.readComplaint();
 	}
 	
-	
+	// API for add complains
 	@POST
 	@Path("/ComplaintAdd")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -42,15 +43,17 @@ public class ComplaintService {
 	}
 	
 
-	// API for update unit 
+	// API for update complains 
 	@PUT
 	@Path("/ComplaintUpdate")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 
 	public String updateComplaint(String itemData) {
+		
 		// Convert the input string to a JSON object
 		JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
+		
 		// Read the values from the JSON object
 		String cID = itemObject.get("cID").getAsString();
 		String perName = itemObject.get("perName").getAsString();
@@ -65,7 +68,7 @@ public class ComplaintService {
 		return output;
 	}
 
-		//API for delete specific unit
+		//API for delete units
 		
 		
 		@DELETE
@@ -74,10 +77,11 @@ public class ComplaintService {
 		@Produces(MediaType.TEXT_PLAIN) 
 		public String deleteComplaint(String complaintData) 
 		{ 
+			
 		//Convert the input string to an XML document
 		 Document doc = Jsoup.parse(complaintData, "", Parser.xmlParser()); 
 		 
-		//Read the value from the element <userID>
+		//Read the value from the element <cID>
 		 String cID = doc.select("cID").text(); 
 		 String output = ComplaintObj.deleteComplaint(cID); 
 		return output; 
@@ -85,13 +89,15 @@ public class ComplaintService {
 		
 		
 		
-		//API for read specific unit range
 		
-		@GET
-		@Path("/getoneComplaint")
-		@Produces(MediaType.TEXT_HTML)
-		public String readAPayment()
-		 {
-			return ComplaintObj.readOneComplaint();
-		 } 
+		   //API for read specific(max) unit range
+		
+		
+			@GET
+			@Path("/readone")
+			@Produces(MediaType.TEXT_HTML)
+			public String readOneComplain()
+			{
+			return ComplaintObj.readOneComplain();
+			}
 }

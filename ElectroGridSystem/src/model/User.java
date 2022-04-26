@@ -30,7 +30,7 @@ private Connection connect() {
 		      
 		      if (con == null) 
 		      {
-		    	  return "Error while connecting to the database for inserting."; 
+		    	  return "Error while connecting to the database for inserting the user."; 
 		      
 		      } 
 		      
@@ -68,7 +68,7 @@ private Connection connect() {
 			try {
 				Connection con = connect();
 				if (con == null) {
-					return "Error while connecting to the database for reading.";
+					return "Error while connecting to the database for reading the user.";
 				}
 				
 				

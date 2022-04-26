@@ -130,5 +130,8 @@ public class BillService {
 			@Path("/latest")
 			@Produces(MediaType.TEXT_HTML)
 			public String readOneBill()
+		        {
+			return itemObj.readOneBill();
+			}
 			
 }

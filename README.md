@@ -1,7 +1,7 @@
 
 # ElectroGrid Project
 
-# Group No: SLIIT/2022/IT/REG/WD/65
+# Group ID: WD_154
 
 
 ## Developers

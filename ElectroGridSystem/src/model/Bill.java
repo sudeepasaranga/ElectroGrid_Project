@@ -211,5 +211,6 @@ public class Bill {
 			
 	// Prepare the view table to be displayed
 	
+		output = "<table border='1'>"
 
 }

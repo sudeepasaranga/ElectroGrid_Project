@@ -3,15 +3,17 @@ package model;
 
 import java.sql.*;
 
+
 public class Payment {
 	
+	//Stablish a database connection 
 	private Connection connect() {
 		Connection con = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");     
 
 			
-			// Provide the correct details: DBServer/DBName, user name, password
+			// Provide the correct details: DBServer/DBName, user name, password of the mysqlDatabase
 			
 			con= DriverManager.getConnection("jdbc:mysql://localhost:3306/electrogrid","root", "root"); 
 		} catch (Exception e) {
@@ -20,6 +22,7 @@ public class Payment {
 		return con;
 	}
 	
+	//insert payments
 	public String insertPayment(String dateOfpay, String payMethod, String cardHolder, String cardNo, String cvv, String expDate, String totamount) {
 		String output = "";
 		try {
@@ -208,10 +211,8 @@ public class Payment {
 					+ "<th>Card Number</th>" 
 					+ "<th>CVV</th>" 
 					+ "<th>Expiry Date</th>" 
-					//+ "<th>Email Address</th>" 
 					+ "<th>Total Amount</th>" 
 					+ "<th>Action</th>"
-					//+ "<th>Update</th><th>Remove</th>"
 					+ "</tr>";
 
 		 String query = "select * from payment where PaymentId= (Select max(PaymentId) from payment)";
@@ -227,8 +228,6 @@ public class Payment {
 				String cardHolder = rs.getString("cardHolder");
 				String cardNo = rs.getString("cardNo");
 				String cvv = rs.getString("cvv");
-				//String totamount = rs.getString("totamount");
-				//String email = rs.getString("email");
 				String expDate = rs.getString("expDate");
 				String totamount = rs.getString("totamount");
 		 // Add into the html table

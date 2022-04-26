@@ -244,6 +244,6 @@ public class Bill {
 		String DueAmount = rs.getString("DueAmount");
 		String Date = rs.getString("Date");
 		      
-	      
+	      // Add into the html table
 			
 }

@@ -126,5 +126,15 @@ public class BillService {
 			 String output = itemObj.deleteBill(BillID); 
 			return output; 
 			}
+	
+	              //API for read a latest bill
+			
+			@GET
+			@Path("/latest")
+			@Produces(MediaType.TEXT_HTML)
+			public String readOneBill()
+			{
+			return itemObj.readOneBill();
+			}
 			
 }

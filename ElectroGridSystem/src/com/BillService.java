@@ -21,7 +21,6 @@ public class BillService {
 	
 	
 	
-	
 	//read bill API
 
 	@GET
@@ -55,6 +54,7 @@ public class BillService {
 		
 	}
 	
+	
 	// insert bill API
 			@POST
 			@Path("/add")
@@ -74,6 +74,7 @@ public class BillService {
 				return output;
 			}
 			
+	
 			
 			// API for update bill
 			@PUT
@@ -103,6 +104,7 @@ public class BillService {
 				
 				return output;
 			}
+	
 			
 			// Delete specific user
 			

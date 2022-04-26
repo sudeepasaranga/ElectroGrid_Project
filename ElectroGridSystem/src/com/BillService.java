@@ -17,6 +17,7 @@ public class BillService {
 	
 	Bill itemObj = new Bill();
 	
+	
 	//read bill API
 
 	@GET
@@ -26,7 +27,10 @@ public class BillService {
 		return itemObj.readBill();
 	}
 	
+	
+	
 	//Unit Calculator
+	
 	public double calculateBill(int unit) {
 		
 		if(unit >100) {
@@ -50,7 +54,10 @@ public class BillService {
 		
 	}
 	
+	
+	
 	// insert bill API
+	
 			@POST
 			@Path("/add")
 			@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -69,8 +76,10 @@ public class BillService {
 				return output;
 			}
 			
+	
 			
 			// API for update bill
+	
 			@PUT
 			@Path("/update")
 			@Consumes(MediaType.APPLICATION_JSON)
@@ -98,6 +107,8 @@ public class BillService {
 				
 				return output;
 			}
+	
+	
 			
 			// Delete specific user
 			

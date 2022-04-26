@@ -122,5 +122,8 @@ public class BillService {
 			 String output = itemObj.deleteBill(BillID); 
 			return output; 
 			}
+	
+	
+	//API for read a latest bill
 			
 }

@@ -201,6 +201,13 @@ public class Bill {
 	        public String readOneBill()
 		{
 		String output = "";
+		try
+		{
+		Connection con = connect();
+		if (con == null)
+		{
+		return "Error while connecting to the database for reading...";
+		}
 	
 
 }

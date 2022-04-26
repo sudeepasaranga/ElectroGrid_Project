@@ -88,7 +88,7 @@ public class UserService {
 		}
 		
 		@GET
-		@Path("/single/{userID}")
+		@Path("/latest")
 		@Produces(MediaType.TEXT_HTML)
 		public String readAUser(@PathParam("userID") int userID)
 		 {

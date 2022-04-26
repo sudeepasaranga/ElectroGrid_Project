@@ -127,7 +127,7 @@ private Connection connect() {
 			try {
 				Connection con = connect();
 				if (con == null) {
-					return "Error while connecting to the database for updating.";
+					return "Error while connecting to the database for updating the user.";
 				}
 				// create a prepared statement
 				String query = "UPDATE user SET username=?,address=?,phonenum=?, email=?, password=? WHERE userID=?";
@@ -165,7 +165,7 @@ private Connection connect() {
 			       
 			       if (con == null) 
 			      {
-			    	   return "Error while connecting to the database for deleting."; 
+			    	   return "Error while connecting to the database for deleting the user."; 
 			      } 
 			       
 			     // create a prepared statement
@@ -208,7 +208,7 @@ private Connection connect() {
 		 "<th>Password</th>" +
 		 "<th>Update</th><th>Remove</th></tr>";
 
-		 String query = "select * from user where userID= ?";
+		 String query = "select * from user where userID=?";
 		 Statement stmt = con.createStatement();
 		 ResultSet rs = stmt.executeQuery(query);
 		 // iterate through the rows in the result set

@@ -208,6 +208,8 @@ public class Bill {
 		{
 		return "Error while connecting to the database for reading...";
 		}
+			
+	// Prepare the view table to be displayed
 	
 
 }

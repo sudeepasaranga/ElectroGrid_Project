@@ -256,5 +256,13 @@ public class Bill {
 		
 		
 		// buttons
+		      
+		output += "<td>" + "<input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'>" + "</td>"
+		+ "<td>" + " <input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>" + "</td></tr>"
+
+		+"<input name='BillID' type='hidden' value='" + BillID + "'>" + "</form></td></tr>";
+		}
+		con.close();
+		
 			
 }

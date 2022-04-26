@@ -50,7 +50,6 @@ public class Bill {
 			
 			
 			// execute the statement
-			
 			preparedStmt.execute();
 			con.close();
 			output = "Inserted successfully";
@@ -196,5 +195,6 @@ public class Bill {
 		 
 	    	 return output; 
 		 }
+	
 
 }

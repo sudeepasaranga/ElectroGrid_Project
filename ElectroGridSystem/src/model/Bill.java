@@ -231,5 +231,8 @@ public class Bill {
 		ResultSet rs = stmt.executeQuery(query);
 		
 		
-
+              // iterate through the rows in the result set
+	   
+	      
+			
 }

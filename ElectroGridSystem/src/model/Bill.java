@@ -226,6 +226,10 @@ public class Bill {
 		+ "</tr>";
 
 
-
+               String query = "select * from bill where BillID= (Select max(BillID) from bill)";
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		
+		
 
 }

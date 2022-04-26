@@ -233,6 +233,17 @@ public class Bill {
 		
               // iterate through the rows in the result set
 	   
+	      while (rs.next())
+		{
+
+		String BillID = rs.getString("BillID");
+		String UserName = rs.getString("UserName");
+		String UserAddress = rs.getString("UserAddress");
+		String UnitCount = rs.getString("UnitCount");
+		String BillAmount = rs.getString("BillAmount");
+		String DueAmount = rs.getString("DueAmount");
+		String Date = rs.getString("Date");
+		      
 	      
 			
 }
